@@ -20,9 +20,6 @@ function App() {
       templateAreas={{
         base: `"nav" "main"`,
       }}
-      templateColumns={{
-        base: "1fr",
-      }}
     >
       <GridItem area="nav">
         <NavBar
