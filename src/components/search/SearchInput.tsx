@@ -1,0 +1,49 @@
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputRightAddon,
+  useColorMode,
+} from "@chakra-ui/react";
+import { useRef } from "react";
+import { BsSearch } from "react-icons/bs";
+import { SEARCH_BORDER_RADIUS } from "../../lib/constants";
+import "./search-input.css";
+
+interface Props {
+  onSearch: (searchText: string) => void;
+  onClick: () => void;
+}
+
+const SearchInput = ({ onSearch, onClick }: Props) => {
+  const isLight = useColorMode().colorMode === "light";
+  const ref = useRef<HTMLInputElement>(null);
+  return (
+    <form className="search-form">
+      <InputGroup className={isLight ? "light-theme" : "dark-theme"}>
+        <Input
+          className="search-input"
+          id="search"
+          ref={ref}
+          borderLeftRadius={SEARCH_BORDER_RADIUS}
+          placeholder="Search"
+          variant="filled"
+          onChange={(event) => {
+            event.preventDefault();
+            if (ref.current) onSearch(ref.current.value);
+          }}
+        />
+        <InputRightAddon
+          as={Button}
+          className="search-button"
+          borderRightRadius={SEARCH_BORDER_RADIUS}
+          onClick={onClick}
+        >
+          <BsSearch></BsSearch>
+        </InputRightAddon>
+      </InputGroup>
+    </form>
+  );
+};
+
+export default SearchInput;
