@@ -27,6 +27,7 @@ const theme = extendTheme({
         container: {
           _light: {
             backgroundColor: "gray.100",
+            shadow: "none",
           },
         },
       },
