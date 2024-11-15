@@ -7,12 +7,14 @@ import "./date-selector.css";
 export interface Props {
   date: Date | null;
   onChangeDate: (date: Date | null) => void;
-  label: string
+  label: string;
 }
 
 const DateSelector = ({ date, onChangeDate, label }: Props) => {
   const isLight = useColorMode().colorMode === "light";
   const dateFormat = `'${label}' MMMM do, yyyy`;
+  const minDate = new Date("2005-01-01");
+  const maxDate = new Date("2030-12-31");
   return (
     <div className={isLight ? "light-theme" : "dark-theme"}>
       <DatePicker
@@ -25,6 +27,8 @@ const DateSelector = ({ date, onChangeDate, label }: Props) => {
         showPopperArrow={false}
         showMonthDropdown
         showYearDropdown
+        minDate={minDate}
+        maxDate={maxDate}
         dropdownMode="select"
         className="react-datapicker__input-text"
       />
