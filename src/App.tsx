@@ -14,13 +14,7 @@ function App() {
   const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
 
   return (
-    <Grid
-      paddingX={2}
-      paddingY={2}
-      templateAreas={{
-        base: `"nav" "main"`,
-      }}
-    >
+    <Grid paddingX={2} paddingY={2} templateAreas={`"nav" "main"`}>
       <GridItem area="nav">
         <NavBar
           onSearch={(searchText) => {
