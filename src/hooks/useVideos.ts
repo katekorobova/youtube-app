@@ -33,7 +33,7 @@ const useVideos = (videoQuery: VideoQuery) => {
   useEffect(() => {
     const controller = new AbortController();
     if (videoQuery.searchText) {
-      setError("")
+      setError("");
       setIsLoading(true);
       apiClient
         .get<FetchResponse<Video>>("/search", {
@@ -59,7 +59,6 @@ const useVideos = (videoQuery: VideoQuery) => {
         });
       return () => controller.abort();
     }
-
   }, [videoQuery]);
 
   return { data, error, isLoading };

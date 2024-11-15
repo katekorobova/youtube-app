@@ -16,6 +16,7 @@ const DateSelector = ({ date, onChangeDate, label }: Props) => {
   return (
     <div className={isLight ? "light-theme" : "dark-theme"}>
       <DatePicker
+        id={label}
         dateFormat={dateFormat}
         selected={date}
         onChange={onChangeDate}

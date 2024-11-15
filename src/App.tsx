@@ -2,7 +2,7 @@ import { Box, Grid, GridItem, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState } from "react";
 import VideoGrid from "./components/videos/VideoGrid";
 import NavBar from "./components/NavBar";
-import SortSelector from "./components/filters/SortSelector";
+import OrderSelector from "./components/filters/OrderSelector";
 import DateSelector from "./components/dates/DateSelector";
 import { VideoQuery } from "./lib/types";
 import { GRID_COLUMNS, GRID_SPACING } from "./lib/constants";
@@ -52,14 +52,16 @@ function App() {
               }
               label="To:"
             />
-            <SortSelector
+            <OrderSelector
               order={videoQueryDraft.order}
               onSelectOrder={(order) =>
                 setVideoQueryDraft({ ...videoQueryDraft, order })
               }
             />
           </SimpleGrid>
-          <Heading as='h1' marginBottom={5} fontSize='5xl'>Search results</Heading>
+          <Heading as="h1" marginBottom={5} fontSize="5xl">
+            Search results
+          </Heading>
         </Box>
         <VideoGrid videoQuery={videoQuery} />
       </GridItem>
