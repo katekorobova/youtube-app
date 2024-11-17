@@ -19,8 +19,8 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
   const isLight = useColorMode().colorMode === "light";
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <form id="search-form">
-      <InputGroup className={isLight ? "light-theme" : "dark-theme"}>
+    <form className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}>
+      <InputGroup>
         <Input
           id="search-input"
           ref={ref}
