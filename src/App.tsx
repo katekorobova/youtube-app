@@ -3,7 +3,7 @@ import { useState } from "react";
 import VideoGrid from "./components/videos/VideoGrid";
 import NavBar from "./components/NavBar";
 import OrderSelector from "./components/filters/OrderSelector";
-import DateSelector from "./components/dates/DateSelector";
+import DateSelector from "./components/filters/DateSelector";
 import { VideoQuery } from "./lib/types";
 import { GRID_COLUMNS, GRID_SPACING } from "./lib/constants";
 

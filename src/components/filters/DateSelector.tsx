@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useColorMode } from "@chakra-ui/react";
 
 import "./date-selector.css";
+import { SELECTOR_DATE_FORMAT } from "../../lib/constants";
 
 export interface Props {
   date: Date | null;
@@ -12,7 +13,7 @@ export interface Props {
 
 const DateSelector = ({ date, onChangeDate, label }: Props) => {
   const isLight = useColorMode().colorMode === "light";
-  const dateFormat = `'${label}' MMMM do, yyyy`;
+  const dateFormat = `'${label}' ${SELECTOR_DATE_FORMAT}`;
   const minDate = new Date("2005-01-01");
   const maxDate = new Date("2030-12-31");
   return (

@@ -1,5 +1,6 @@
 import { Card, CardBody, Heading, Image, Link, Text } from "@chakra-ui/react";
 import { Video } from "../../hooks/useVideos";
+import { DATE_FORMAT_OPTIONS } from "../../lib/constants";
 
 function unescape(htmlStr: string) {
   return htmlStr
@@ -25,7 +26,12 @@ const VideoCard = ({ video }: Props) => {
             {unescape(video.snippet.title)}
           </Heading>
           <Text fontSize="sm">{video.snippet.channelTitle}</Text>
-          <Text fontSize="sm">{video.snippet.publishedAt}</Text>
+          <Text fontSize="sm">
+            {new Date(video.snippet.publishedAt).toLocaleString(
+              "en-US",
+              DATE_FORMAT_OPTIONS
+            )}
+          </Text>
         </CardBody>
       </Card>
     </Link>
