@@ -15,6 +15,7 @@
   --negative-text: var(--chakra-colors-white);
   --selected-background: var(--chakra-colors-gray-300);
 }
+
 .dark-theme {
   --light-gray: var(--chakra-colors-gray-600);
   --gray: var(--chakra-colors-gray-500);
@@ -33,18 +34,6 @@
   --selected-background: var(--text);
 }
 
-/* if you dont want to use chakra's theme use this class in the wrapping div. These are the exact original values */
-.light-theme-original {
-  --light-gray: #cccccc;
-  --gray: #b3b3b3;
-  --blue700: #2a69ac;
-  --blue600: #3182ce;
-  --blue500: #a0aec0;
-  --blue400: #cbd5e0;
-  --blue300: #e2e8f0;
-  --blue200: #edf2f7;
-  --blue100: #f7fafc;
-}
 .react-datepicker {
   font-family: unset;
   font-size: 0.9rem;
@@ -61,11 +50,11 @@
   padding-left: 1rem;
   padding-right: 1rem;
   height: 2.5rem;
-  /* width: 250px; */
   border-radius: 20px;
   border: 1px solid;
   border-color: var(--light-gray);
 }
+
 .react-datapicker__input-text {
   background-color: transparent;
 }
@@ -73,6 +62,7 @@
 .react-datepicker__input-container:hover {
   border-color: var(--gray);
 }
+
 .react-datepicker__input-container:focus-within {
   z-index: 1;
   border-color: var(--blue600);

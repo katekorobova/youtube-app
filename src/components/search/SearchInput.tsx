@@ -19,11 +19,10 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
   const isLight = useColorMode().colorMode === "light";
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <form className="search-form">
-      <InputGroup className={isLight ? "light-theme" : "dark-theme"}>
+    <form className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}>
+      <InputGroup>
         <Input
-          className="search-input"
-          id="search"
+          id="search-input"
           ref={ref}
           borderLeftRadius={SEARCH_BORDER_RADIUS}
           placeholder="Search"
@@ -35,7 +34,7 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
         />
         <InputRightAddon
           as={Button}
-          className="search-button"
+          id="search-button"
           borderRightRadius={SEARCH_BORDER_RADIUS}
           onClick={onClick}
         >

@@ -21,6 +21,24 @@ const theme = extendTheme({
       900: "#0F0F0F",
     },
   },
+  components: {
+    Card: {
+      baseStyle: {
+        container: {
+          _light: {
+            backgroundColor: "gray.100",
+            shadow: "none",
+          },
+        },
+      },
+    },
+    Button: {
+      baseStyle: {
+        textAlign: "left",
+        fontWeight: "",
+      },
+    },
+  },
 });
 
 export default theme;

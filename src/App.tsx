@@ -2,8 +2,8 @@ import { Box, Grid, GridItem, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useState } from "react";
 import VideoGrid from "./components/videos/VideoGrid";
 import NavBar from "./components/NavBar";
-import SortSelector from "./components/filters/SortSelector";
-import DateSelector from "./components/dates/DateSelector";
+import OrderSelector from "./components/filters/OrderSelector";
+import DateSelector from "./components/filters/DateSelector";
 import { VideoQuery } from "./lib/types";
 import { GRID_COLUMNS, GRID_SPACING } from "./lib/constants";
 
@@ -14,13 +14,7 @@ function App() {
   const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
 
   return (
-    <Grid
-      paddingX={2}
-      paddingY={2}
-      templateAreas={{
-        base: `"nav" "main"`,
-      }}
-    >
+    <Grid paddingX={2} paddingY={2} templateAreas={`"nav" "main"`}>
       <GridItem area="nav">
         <NavBar
           onSearch={(searchText) => {
@@ -52,14 +46,16 @@ function App() {
               }
               label="To:"
             />
-            <SortSelector
+            <OrderSelector
               order={videoQueryDraft.order}
               onSelectOrder={(order) =>
                 setVideoQueryDraft({ ...videoQueryDraft, order })
               }
             />
           </SimpleGrid>
-          <Heading as='h1' marginBottom={5} fontSize='5xl'>Search results</Heading>
+          <Heading as="h1" marginBottom={5} fontSize="5xl">
+            Search results
+          </Heading>
         </Box>
         <VideoGrid videoQuery={videoQuery} />
       </GridItem>

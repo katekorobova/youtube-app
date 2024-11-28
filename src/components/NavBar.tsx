@@ -1,4 +1,4 @@
-import { Heading, HStack, Image } from "@chakra-ui/react";
+import { Heading, HStack, Image, Show } from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./search/SearchInput";
@@ -10,13 +10,16 @@ interface Props {
 
 const NavBar = ({ onSearch, onClick }: Props) => {
   return (
-    <HStack marginBottom={5}
-    justifyContent="space-between">
-      <HStack>
-        <Image src={logo} boxSize="32px" />
-        <Heading fontSize="2xl">UwuTube</Heading>
-      </HStack>
-      <SearchInput onSearch={onSearch} onClick={onClick}/>
+    <HStack marginBottom={5} justifyContent="space-between">
+      <Show breakpoint="(min-width: 300px)">
+        <HStack>
+          <Image src={logo} boxSize="32px" />
+          <Show above="sm">
+            <Heading fontSize="2xl">UwuTube</Heading>
+          </Show>
+        </HStack>
+      </Show>
+      <SearchInput onSearch={onSearch} onClick={onClick} />
       <ColorModeSwitch />
     </HStack>
   );
