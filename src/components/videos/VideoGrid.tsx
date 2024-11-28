@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import useVideos from "../../hooks/useVideos";
 import { GRID_COLUMNS, GRID_SPACING } from "../../lib/constants";
 import { VideoQuery } from "../../lib/types";
@@ -16,20 +16,25 @@ const VideoGrid = ({ videoQuery }: Props) => {
   if (error) return <Text>{error}</Text>;
 
   return (
-    <SimpleGrid columns={GRID_COLUMNS} spacing={GRID_SPACING}>
-      {isLoading &&
-        skeletons.map((skeleton) => (
-          <VideoCardContainer key={skeleton}>
-            <VideoCardSkeleton />
-          </VideoCardContainer>
-        ))}
-      {!isLoading &&
-        data.map((video) => (
-          <VideoCardContainer key={video.id.videoId}>
-            <VideoCard video={video} />
-          </VideoCardContainer>
-        ))}
-    </SimpleGrid>
+    <div>
+      <Heading as="h1" marginBottom={5}>
+        Search results
+      </Heading>
+      <SimpleGrid columns={GRID_COLUMNS} spacing={GRID_SPACING}>
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <VideoCardContainer key={skeleton}>
+              <VideoCardSkeleton />
+            </VideoCardContainer>
+          ))}
+        {!isLoading &&
+          data.map((video) => (
+            <VideoCardContainer key={video.id.videoId}>
+              <VideoCard video={video} />
+            </VideoCardContainer>
+          ))}
+      </SimpleGrid>
+    </div>
   );
 };
 

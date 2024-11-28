@@ -13,7 +13,7 @@ const NavBar = ({ onSearch, onClick }: Props) => {
     <HStack marginBottom={5} justifyContent="space-between">
       <Show breakpoint="(min-width: 300px)">
         <HStack>
-          <Image src={logo} boxSize="32px" />
+          <Image src={logo} boxSize="32px" alt="" />
           <Show above="sm">
             <Heading fontSize="2xl">UwuTube</Heading>
           </Show>

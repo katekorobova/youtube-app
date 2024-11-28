@@ -39,6 +39,7 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
         <InputRightAddon
           as={Button}
           id="search-button"
+          aria-label="Search Button"
           borderRightRadius={SEARCH_BORDER_RADIUS}
           onClick={onClick}
         >
