@@ -57,3 +57,35 @@ export const SORT_ORDERS = [
   { value: "rating", label: "Rating" },
   { value: "title", label: "Title" },
 ];
+
+export const LOCATIONS = [
+  { value: null, label: "Any" },
+  {
+    value: { location: "-33.8,151", locationRadius: "60km" },
+    label: "Sydney",
+  },
+  {
+    value: { location: "-37.9,145", locationRadius: "60km" },
+    label: "Melbourne",
+  },
+  {
+    value: { location: "-34.5, 148.9", locationRadius: "25km" },
+    label: "Brisbane",
+  },
+  {
+    value: { location: "-34.9, 138.6", locationRadius: "60km" },
+    label: "Adelade",
+  },
+  {
+    value: { location: "-32.1,115.9", locationRadius: "60km" },
+    label: "Perth",
+  },
+  {
+    value: { location: "-42,146.5", locationRadius: "300km" },
+    label: "Tasmania",
+  },
+  {
+    value: { location: "-42,172", locationRadius: "1000km" },
+    label: "New Zealand",
+  },
+];

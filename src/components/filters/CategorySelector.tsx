@@ -7,9 +7,9 @@ interface Props {
   onSelectCategory: (category: number | null) => void;
 }
 
-const CategorySelector = ({ category: order, onSelectCategory }: Props) => {
+const CategorySelector = ({ category, onSelectCategory }: Props) => {
   const currentCategory = VIDEO_CATEGORIES.find(
-    (entry) => entry.value === order
+    (entry) => entry.value === category
   );
 
   return (

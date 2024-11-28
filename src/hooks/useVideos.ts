@@ -45,6 +45,8 @@ const useVideos = (videoQuery: VideoQuery) => {
             videoCategoryId: videoQuery.category,
             publishedAfter: videoQuery.publishedAfter,
             publishedBefore: videoQuery.publishedBefore,
+            location: videoQuery.locationData?.location ?? null,
+            locationRadius: videoQuery.locationData?.locationRadius ?? null,
             q: videoQuery.searchText,
             maxResults: 50,
           },
