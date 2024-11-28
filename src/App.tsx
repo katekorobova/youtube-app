@@ -13,7 +13,7 @@ function App() {
   const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>(
     {} as VideoQuery
   );
-  const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
+  const [videoQuery, setVideoQuery] = useState<VideoQuery | null>(null);
 
   return (
     <Grid paddingX={2} paddingY={2} templateAreas={`"nav" "main"`}>
