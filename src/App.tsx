@@ -53,7 +53,7 @@ function App() {
               }
             />
           </SimpleGrid>
-          <Heading as="h1" marginBottom={5} fontSize="5xl">
+          <Heading as="h1" marginBottom={5}>
             Search results
           </Heading>
         </Box>

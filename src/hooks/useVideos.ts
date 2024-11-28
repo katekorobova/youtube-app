@@ -45,7 +45,7 @@ const useVideos = (videoQuery: VideoQuery) => {
             publishedAfter: videoQuery.publishedAfter,
             publishedBefore: videoQuery.publishedBefore,
             q: videoQuery.searchText,
-            maxResults: 25,
+            maxResults: 50,
           },
         })
         .then((res) => {

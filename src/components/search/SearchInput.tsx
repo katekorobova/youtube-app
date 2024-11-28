@@ -26,7 +26,8 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
           ref={ref}
           borderLeftRadius={SEARCH_BORDER_RADIUS}
           placeholder="Search"
-          variant="filled"
+          variant="outline"
+          maxLength={50}
           onChange={(event) => {
             event.preventDefault();
             if (ref.current) onSearch(ref.current.value);

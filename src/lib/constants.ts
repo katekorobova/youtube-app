@@ -12,5 +12,4 @@ export const DATE_FORMAT_OPTIONS = {
   hour: "numeric",
   minute: "numeric",
   hour12: false,
-  timeZone: "UTC",
 } as Intl.DateTimeFormatOptions;
