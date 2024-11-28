@@ -1,7 +1,6 @@
 import { HStack, Switch, useColorMode } from "@chakra-ui/react";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
-
 const ColorModeSwitch = () => {
   const { toggleColorMode, colorMode } = useColorMode();
 
@@ -10,7 +9,7 @@ const ColorModeSwitch = () => {
       <BsFillSunFill />
       <Switch
         id="switch"
-        colorScheme="green"
+        colorScheme="pink"
         isChecked={colorMode === "dark"}
         onChange={toggleColorMode}
       />

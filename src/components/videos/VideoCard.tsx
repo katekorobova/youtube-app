@@ -20,7 +20,7 @@ const VideoCard = ({ video }: Props) => {
   return (
     <Link href={href} isExternal>
       <Card>
-        <Image src={video.snippet.thumbnails.high.url} />
+        <Image src={video.snippet.thumbnails.high.url} alt="" />
         <CardBody>
           <Heading fontSize="xl" marginBottom={1}>
             {unescape(video.snippet.title)}
