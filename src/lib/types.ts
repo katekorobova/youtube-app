@@ -1,6 +1,7 @@
 export interface VideoQuery {
-    searchText: string;
-    order: string;
-    publishedAfter: Date | null;
-    publishedBefore: Date | null;
-  }
+  searchText: string;
+  category: number | null;
+  order: string | null;
+  publishedAfter: Date | null;
+  publishedBefore: Date | null;
+}

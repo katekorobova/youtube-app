@@ -42,6 +42,7 @@ const useVideos = (videoQuery: VideoQuery) => {
             part: "snippet",
             type: "video",
             order: videoQuery.order,
+            videoCategoryId: videoQuery.category,
             publishedAfter: videoQuery.publishedAfter,
             publishedBefore: videoQuery.publishedBefore,
             q: videoQuery.searchText,

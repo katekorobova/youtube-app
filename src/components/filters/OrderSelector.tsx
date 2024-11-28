@@ -1,22 +1,14 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import { FILTER_BORDER_RADIUS } from "../../lib/constants";
+import { FILTER_BORDER_RADIUS, SORT_ORDERS } from "../../lib/constants";
 
 interface Props {
-  order: string;
-  onSelectOrder: (order: string) => void;
+  order: string | null;
+  onSelectOrder: (order: string | null) => void;
 }
 
 const OrderSelector = ({ order, onSelectOrder }: Props) => {
-  const sortOrders = [
-    { value: "relevance", label: "Relevance" },
-    { value: "date", label: "Upload date" },
-    { value: "viewCount", label: "View count" },
-    { value: "rating", label: "Rating" },
-    { value: "title", label: "Title" },
-  ];
-
-  const currentOrder = sortOrders.find((entry) => entry.value === order);
+  const currentOrder = SORT_ORDERS.find((entry) => entry.value === order);
 
   return (
     <Menu>
@@ -28,11 +20,11 @@ const OrderSelector = ({ order, onSelectOrder }: Props) => {
         Sort by: {currentOrder?.label ?? "Relevance"}
       </MenuButton>
       <MenuList>
-        {sortOrders.map((entry) => (
+        {SORT_ORDERS.map((entry) => (
           <MenuItem
             onClick={() => onSelectOrder(entry.value)}
             key={entry.value}
-            value={entry.value}
+            value={entry.label}
           >
             {entry.label}
           </MenuItem>

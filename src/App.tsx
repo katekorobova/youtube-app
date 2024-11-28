@@ -6,11 +6,12 @@ import OrderSelector from "./components/filters/OrderSelector";
 import DateSelector from "./components/filters/DateSelector";
 import { VideoQuery } from "./lib/types";
 import { GRID_COLUMNS, GRID_SPACING } from "./lib/constants";
+import CategorySelector from "./components/filters/CategorySelector";
 
 function App() {
-  const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>({
-    order: "relevance",
-  } as VideoQuery);
+  const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>(
+    {} as VideoQuery
+  );
   const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
 
   return (
@@ -46,6 +47,12 @@ function App() {
               }
               label="To:"
             />
+            <CategorySelector
+              category={videoQueryDraft.category}
+              onSelectCategory={(category) =>
+                setVideoQueryDraft({ ...videoQueryDraft, category })
+              }
+            ></CategorySelector>
             <OrderSelector
               order={videoQueryDraft.order}
               onSelectOrder={(order) =>
