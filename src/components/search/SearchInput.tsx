@@ -19,7 +19,10 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
   const isLight = useColorMode().colorMode === "light";
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <form className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}>
+    <form
+      className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}
+      onSubmit={(e) => e.preventDefault()}
+    >
       <InputGroup>
         <Input
           id="search-input"
