@@ -6,11 +6,13 @@ import OrderSelector from "./components/filters/OrderSelector";
 import DateSelector from "./components/filters/DateSelector";
 import { VideoQuery } from "./lib/types";
 import { GRID_COLUMNS, GRID_SPACING } from "./lib/constants";
+import CategorySelector from "./components/filters/CategorySelector";
+import LocationSelector from "./components/filters/LocationSelector";
 
 function App() {
-  const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>({
-    order: "relevance",
-  } as VideoQuery);
+  const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>(
+    {} as VideoQuery
+  );
   const [videoQuery, setVideoQuery] = useState<VideoQuery>({} as VideoQuery);
 
   return (
@@ -46,6 +48,18 @@ function App() {
               }
               label="To:"
             />
+            <CategorySelector
+              category={videoQueryDraft.category}
+              onSelectCategory={(category) =>
+                setVideoQueryDraft({ ...videoQueryDraft, category })
+              }
+            ></CategorySelector>
+            <LocationSelector
+              locationData={videoQueryDraft.locationData}
+              onSelectLocation={(locationData) =>
+                setVideoQueryDraft({ ...videoQueryDraft, locationData })
+              }
+            ></LocationSelector>
             <OrderSelector
               order={videoQueryDraft.order}
               onSelectOrder={(order) =>
@@ -53,7 +67,7 @@ function App() {
               }
             />
           </SimpleGrid>
-          <Heading as="h1" marginBottom={5} fontSize="5xl">
+          <Heading as="h1" marginBottom={5}>
             Search results
           </Heading>
         </Box>

@@ -19,14 +19,18 @@ const SearchInput = ({ onSearch, onClick }: Props) => {
   const isLight = useColorMode().colorMode === "light";
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <form className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}>
+    <form
+      className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}
+      onSubmit={(e) => e.preventDefault()}
+    >
       <InputGroup>
         <Input
           id="search-input"
           ref={ref}
           borderLeftRadius={SEARCH_BORDER_RADIUS}
           placeholder="Search"
-          variant="filled"
+          variant="outline"
+          maxLength={50}
           onChange={(event) => {
             event.preventDefault();
             if (ref.current) onSearch(ref.current.value);

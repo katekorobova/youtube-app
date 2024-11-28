@@ -32,33 +32,34 @@ const useVideos = (videoQuery: VideoQuery) => {
 
   useEffect(() => {
     const controller = new AbortController();
-    if (videoQuery.searchText) {
-      setError("");
-      setIsLoading(true);
-      apiClient
-        .get<FetchResponse<Video>>("/search", {
-          signal: controller.signal,
-          params: {
-            part: "snippet",
-            type: "video",
-            order: videoQuery.order,
-            publishedAfter: videoQuery.publishedAfter,
-            publishedBefore: videoQuery.publishedBefore,
-            q: videoQuery.searchText,
-            maxResults: 25,
-          },
-        })
-        .then((res) => {
-          setData(res.data.items);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (err instanceof CanceledError) return;
-          setError(err.message);
-          setIsLoading(false);
-        });
-      return () => controller.abort();
-    }
+    setError("");
+    setIsLoading(true);
+    apiClient
+      .get<FetchResponse<Video>>("/search", {
+        signal: controller.signal,
+        params: {
+          part: "snippet",
+          type: "video",
+          order: videoQuery.order,
+          videoCategoryId: videoQuery.category,
+          publishedAfter: videoQuery.publishedAfter,
+          publishedBefore: videoQuery.publishedBefore,
+          location: videoQuery.locationData?.location ?? null,
+          locationRadius: videoQuery.locationData?.locationRadius ?? null,
+          q: videoQuery.searchText,
+          maxResults: 50,
+        },
+      })
+      .then((res) => {
+        setData(res.data.items);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setError(err.message);
+        setIsLoading(false);
+      });
+    return () => controller.abort();
   }, [videoQuery]);
 
   return { data, error, isLoading };
