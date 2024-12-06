@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
 import apiClient from "../services/api-client";
 
-interface FetchResponse<T> {
-  items: T[];
+interface SearchResponse {
+  items: Video[];
 }
 
 export interface Video {
@@ -36,7 +36,7 @@ const useVideos = (videoQuery: VideoQuery | null) => {
       setError("");
       setIsLoading(true);
       apiClient
-        .get<FetchResponse<Video>>("/search", {
+        .get<SearchResponse>("/search", {
           signal: controller.signal,
           params: {
             part: "snippet",

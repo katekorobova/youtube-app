@@ -59,10 +59,6 @@
   background-color: transparent;
 }
 
-.react-datepicker__input-container:hover {
-  border-color: var(--gray);
-}
-
 .react-datepicker__input-container:focus-within {
   z-index: 1;
   border-color: var(--blue600);
