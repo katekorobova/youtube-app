@@ -1,0 +1,27 @@
+.light-theme {
+  --border-color: var(--chakra-colors-gray-200);
+  --hover-background: var(--chakra-colors-gray-200);
+}
+
+.dark-theme {
+  --border-color: var(--chakra-colors-gray-600);
+  --hover-background: var(--chakra-colors-whiteAlpha-300);
+}
+
+.search-form {
+  width: 50%;
+}
+
+.search-form input,
+.search-form button,
+.search-form input:hover {
+  border: 1px solid var(--border-color);
+}
+
+.search-form input {
+  background-color: transparent;
+}
+
+.search-form button:hover {
+  background: var(--hover-background);
+}
