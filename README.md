@@ -7,21 +7,19 @@ This is a web application that enhances the YouTube search experience by providi
 ## Installation and Setup
 Follow these steps to clone and run the project locally:
 
-Clone the Repository:
+### Clone the Repository:
 ```
 https://github.com/katekorobova/youtube-app.git
 cd youtube-app
 ```
 
-Install Dependencies:
-
+### Install Dependencies:
 Ensure that Node.js is installed on your system. Run:
 ```
 npm install
 ```
 
-Set Up API Key:
-
+### Set Up API Key:
 Obtain an API key from the Google Cloud Console. Enable YouTube Data API v3.
 
 Create a .env file in the root directory and add your API key:
@@ -29,7 +27,7 @@ Create a .env file in the root directory and add your API key:
 VITE_API_KEY=your_api_key_here
 ```
 
-Run the Application:
+### Run the Application:
 ```
 npm run dev
 ```
