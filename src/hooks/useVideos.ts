@@ -1,8 +1,8 @@
-import videos from "../data/videos";
-import { VideoQuery } from "../lib/types";
-import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
-import apiClient from "../services/api-client";
+import { useEffect, useState } from "react";
+import useAxiosPrivate from "./useAxiosPrivate";
+import { VideoQuery } from "../lib/types";
+// import videos from "../data/videos";
 
 interface SearchResponse {
   items: Video[];
@@ -25,44 +25,37 @@ export interface Video {
   };
 }
 
-const useVideos = (videoQuery: VideoQuery | null) => {
+const useVideos = (query?: VideoQuery) => {
+  const axios = useAxiosPrivate();
+
   const [data, setData] = useState<Video[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (videoQuery) {
+    console.log(query);
+    if (!query) return;
+
+    const fetchVideos = async () => {
       const controller = new AbortController();
-      setError("");
+      setError(undefined);
       setIsLoading(true);
-      apiClient
-        .get<SearchResponse>("/search", {
+
+      try {
+        const response = await axios.post<SearchResponse>("/search", query, {
           signal: controller.signal,
-          params: {
-            part: "snippet",
-            type: "video",
-            order: videoQuery.order,
-            videoCategoryId: videoQuery.category,
-            publishedAfter: videoQuery.publishedAfter,
-            publishedBefore: videoQuery.publishedBefore,
-            location: videoQuery.locationData?.location ?? null,
-            locationRadius: videoQuery.locationData?.locationRadius ?? null,
-            q: videoQuery.searchText,
-            maxResults: 50,
-          },
-        })
-        .then((res) => {
-          setData(res.data.items);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (err instanceof CanceledError) return;
-          setError(err.message);
-          setIsLoading(false);
         });
+        setData(response.data.items);
+      } catch (error: any) {
+        if (error instanceof CanceledError) return;
+        setError(error?.message || "An error occurred while fetching videos.");
+      } finally {
+        setIsLoading(false);
+      }
       return () => controller.abort();
-    }
-  }, [videoQuery]);
+    };
+    fetchVideos();
+  }, [query]);
 
   return { data, error, isLoading };
 

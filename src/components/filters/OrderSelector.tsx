@@ -1,32 +1,35 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import { FILTER_BORDER_RADIUS, SORT_ORDERS } from "../../lib/constants";
+import {
+  BUTTON_BORDER_RADIUS,
+  DEFAULT_CATEGORY,
+  SORT_ORDERS,
+} from "../../lib/constants";
+import useQueryDraft from "../../hooks/useQueryDraft";
 
-interface Props {
-  order: string | null;
-  onSelectOrder: (order: string | null) => void;
-}
-
-const OrderSelector = ({ order, onSelectOrder }: Props) => {
-  const currentOrder = SORT_ORDERS.find((entry) => entry.value === order);
+const OrderSelector = () => {
+  const { queryDraft, setQueryDraft } = useQueryDraft();
+  const currentOrder = SORT_ORDERS.find(
+    ({ value }) => value === queryDraft.order
+  );
 
   return (
     <Menu>
       <MenuButton
-        borderRadius={FILTER_BORDER_RADIUS}
+        borderRadius={BUTTON_BORDER_RADIUS}
         as={Button}
         rightIcon={<BsChevronDown />}
       >
-        Sort by: {currentOrder?.label ?? "Relevance"}
+        Sort by: {currentOrder?.label ?? DEFAULT_CATEGORY}
       </MenuButton>
       <MenuList>
-        {SORT_ORDERS.map((entry) => (
+        {SORT_ORDERS.map(({ value, label }) => (
           <MenuItem
-            onClick={() => onSelectOrder(entry.value)}
-            key={entry.value}
-            value={entry.label}
+            onClick={() => setQueryDraft({ ...queryDraft, order: value })}
+            key={label}
+            value={label}
           >
-            {entry.label}
+            {label}
           </MenuItem>
         ))}
       </MenuList>

@@ -1,36 +1,41 @@
-import { Grid, GridItem } from "@chakra-ui/react";
-import { useState } from "react";
-import VideoGrid from "./components/videos/VideoGrid";
-import NavBar from "./components/NavBar";
-import { VideoQuery } from "./lib/types";
-import FilterGrid from "./components/filters/FilterGrid";
+import { Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
+import {
+  HISTORY_PAGE,
+  HOME_PAGE,
+  LOGIN_PAGE,
+  PROFILE_PAGE,
+  REGISTER_PAGE,
+} from "./lib/constants";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import History from "./pages/History";
+import Profile from "./pages/Profile";
+import RequireAuth from "./components/RequireAuth";
+import RequireUnauth from "./components/RequireUnauth";
 
 function App() {
-  const [videoQueryDraft, setVideoQueryDraft] = useState<VideoQuery>(
-    {} as VideoQuery
-  );
-  const [videoQuery, setVideoQuery] = useState<VideoQuery | null>(null);
-
   return (
-    <Grid paddingX={2} paddingY={2} templateAreas={`"nav" "main"`}>
-      <GridItem area="nav">
-        <NavBar
-          onSearch={(searchText) => {
-            setVideoQueryDraft({ ...videoQueryDraft, searchText });
-          }}
-          onClick={() => {
-            setVideoQuery({ ...videoQueryDraft });
-          }}
-        />
-      </GridItem>
-      <GridItem area="main">
-        <FilterGrid
-          videoQueryDraft={videoQueryDraft}
-          setVideoQueryDraft={setVideoQueryDraft}
-        />
-        <VideoGrid videoQuery={videoQuery} />
-      </GridItem>
-    </Grid>
+    <Routes>
+      {/* Permit all */}
+      <Route path={HOME_PAGE} element={<Home />} />
+
+      {/* Authorized only */}
+      <Route element={<RequireAuth />}>
+        <Route path={PROFILE_PAGE} element={<Profile />} />
+        <Route path={HISTORY_PAGE} element={<History />} />
+      </Route>
+
+      {/* Unauthorized only */}
+      <Route element={<RequireUnauth />}>
+        <Route path={LOGIN_PAGE} element={<Login />} />
+        <Route path={REGISTER_PAGE} element={<Register />} />
+      </Route>
+
+      {/* Everything else */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

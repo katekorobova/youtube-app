@@ -1,17 +1,15 @@
 import { SimpleGrid } from "@chakra-ui/react";
+import useQueryDraft from "../../hooks/useQueryDraft";
 import { GRID_COLUMNS, GRID_SPACING } from "../../lib/constants";
-import { VideoQuery } from "../../lib/types";
-import DateSelector from "./DateSelector";
 import CategorySelector from "./CategorySelector";
+import DateSelector from "./DateSelector";
 import LocationSelector from "./LocationSelector";
 import OrderSelector from "./OrderSelector";
 
-interface Props {
-  videoQueryDraft: VideoQuery;
-  setVideoQueryDraft: (videoQueryDraft: VideoQuery) => void;
-}
+const FilterGrid = () => {
+  const { queryDraft, setQueryDraft } = useQueryDraft();
+  const { publishedAfter, publishedBefore } = queryDraft;
 
-const FilterGrid = ({ videoQueryDraft, setVideoQueryDraft }: Props) => {
   return (
     <SimpleGrid
       columns={GRID_COLUMNS}
@@ -19,37 +17,22 @@ const FilterGrid = ({ videoQueryDraft, setVideoQueryDraft }: Props) => {
       marginBottom={GRID_SPACING}
     >
       <DateSelector
-        date={videoQueryDraft.publishedAfter}
+        date={publishedAfter}
         onChangeDate={(publishedAfter) =>
-          setVideoQueryDraft({ ...videoQueryDraft, publishedAfter })
+          setQueryDraft({ ...queryDraft, publishedAfter })
         }
         label="From:"
       />
       <DateSelector
-        date={videoQueryDraft.publishedBefore}
+        date={publishedBefore}
         onChangeDate={(publishedBefore) =>
-          setVideoQueryDraft({ ...videoQueryDraft, publishedBefore })
+          setQueryDraft({ ...queryDraft, publishedBefore })
         }
         label="To:"
       />
-      <CategorySelector
-        category={videoQueryDraft.category}
-        onSelectCategory={(category) =>
-          setVideoQueryDraft({ ...videoQueryDraft, category })
-        }
-      />
-      <LocationSelector
-        locationData={videoQueryDraft.locationData}
-        onSelectLocation={(locationData) =>
-          setVideoQueryDraft({ ...videoQueryDraft, locationData })
-        }
-      />
-      <OrderSelector
-        order={videoQueryDraft.order}
-        onSelectOrder={(order) =>
-          setVideoQueryDraft({ ...videoQueryDraft, order })
-        }
-      />
+      <CategorySelector />
+      <LocationSelector />
+      <OrderSelector />
     </SimpleGrid>
   );
 };
