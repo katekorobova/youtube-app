@@ -12,29 +12,32 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import History from "./pages/History";
 import Profile from "./pages/Profile";
-import RequireAuth from "./components/RequireAuth";
-import RequireUnauth from "./components/RequireUnauth";
+import RequireAuth from "./components/auth/RequireAuth";
+import RequireUnauth from "./components/auth/RequireUnauth";
+import PersistLogin from "./components/auth/PersistLogin";
 
 function App() {
   return (
     <Routes>
-      {/* Permit all */}
-      <Route path={HOME_PAGE} element={<Home />} />
+      <Route element={<PersistLogin />}>
+        {/* Permit all */}
+        <Route path={HOME_PAGE} element={<Home />} />
 
-      {/* Authorized only */}
-      <Route element={<RequireAuth />}>
-        <Route path={PROFILE_PAGE} element={<Profile />} />
-        <Route path={HISTORY_PAGE} element={<History />} />
+        {/* Authorized only */}
+        <Route element={<RequireAuth />}>
+          <Route path={PROFILE_PAGE} element={<Profile />} />
+          <Route path={HISTORY_PAGE} element={<History />} />
+        </Route>
+
+        {/* Unauthorized only */}
+        <Route element={<RequireUnauth />}>
+          <Route path={LOGIN_PAGE} element={<Login />} />
+          <Route path={REGISTER_PAGE} element={<Register />} />
+        </Route>
+
+        {/* Everything else */}
+        <Route path="*" element={<NotFound />} />
       </Route>
-
-      {/* Unauthorized only */}
-      <Route element={<RequireUnauth />}>
-        <Route path={LOGIN_PAGE} element={<Login />} />
-        <Route path={REGISTER_PAGE} element={<Register />} />
-      </Route>
-
-      {/* Everything else */}
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

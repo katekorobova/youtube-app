@@ -1,6 +1,6 @@
 import { Grid, GridItem, useColorMode } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import NavBar from "./NavBar";
+import NavBar from "../navigation/NavBar";
 import "./layout.css";
 import { NAV_BAR_HEIGHT } from "../../lib/constants";
 

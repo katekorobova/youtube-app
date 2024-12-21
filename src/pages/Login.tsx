@@ -1,13 +1,15 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "../api/axios";
-import AuthForm from "../components/AuthForm";
+import axios, { axiosWithCredentials } from "../api/axios";
+import AuthForm from "../components/auth/AuthForm";
 import useAuth from "../hooks/useAuth";
-import { BUTTON_BORDER_RADIUS, REGISTER_PAGE } from "../lib/constants";
+import {
+  BUTTON_BORDER_RADIUS,
+  LOGIN_URL,
+  REGISTER_PAGE,
+} from "../lib/constants";
 import { TokenResponse } from "../lib/types";
-
-const LOGIN_URL = "login";
 
 function Login() {
   const { setAuth } = useAuth();
@@ -24,13 +26,20 @@ function Login() {
   async function handleSubmit() {
     setIsLoading(true);
     try {
-      const response = await axios.post<TokenResponse>(LOGIN_URL, {
-        username: user,
-        password: pass,
-      });
+      const response = await axiosWithCredentials.post<TokenResponse>(
+        LOGIN_URL,
+        {
+          username: user,
+          password: pass,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       const { username, accessToken } = response.data;
       setAuth({ username, accessToken });
     } catch (error: any) {
+      console.error(error);
       if (!error?.response) {
         setErrorMessage("No Response");
       } else if (error.response?.status === 400) {

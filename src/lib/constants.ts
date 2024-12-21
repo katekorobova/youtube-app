@@ -6,11 +6,11 @@ export const NAV_BAR_SPACING = 4;
 export const GRID_SPACING = 4;
 export const GRID_COLUMNS = { base: 1, sm: 2, md: 3, lg: 4, xl: 5 };
 
-export const FORM_WIDTH = "500px";
+export const SELECTOR_HEIGHT = "12rem";
 
+export const FORM_WIDTH = "500px";
 export const SKELETON_HEIGHT = "200px";
 export const SKELETON_COUNT = 10;
-
 export const HEADING_SIZE = "3xl";
 
 export const INPUT_BORDER_RADIUS = 20;
@@ -20,11 +20,18 @@ export const HOME_PAGE = "/";
 export const LOGIN_PAGE = "/login";
 export const REGISTER_PAGE = "/register";
 export const HISTORY_PAGE = "/history";
-
 export const PROFILE_PAGE = "/profile";
 
-export const DATE_FORMAT = "MMMM DD, yyyy";
-export const DATE_TIME_FORMAT = "MMMM DD, yyyy HH:mm";
+export const SEARCH_URL = "search";
+export const SEARCH_AUTH_URL = "searchAuth";
+export const HISTORY_URL = "history";
+export const REGISTER_URL = "register";
+export const LOGIN_URL = "login";
+export const LOGOUT_URL = "logout";
+export const REFRESH_URL = "refresh";
+
+export const DATE_FORMAT = "MMMM D, yyyy";
+export const DATE_TIME_FORMAT = "MMMM D, yyyy HH:mm";
 export const DATE_FORMAT_OPTIONS = {
   year: "numeric",
   month: "long",

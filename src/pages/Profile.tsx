@@ -1,7 +1,8 @@
 import { Button, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/navigation/Layout";
+import Layout from "../components/common/Layout";
 import useAuth from "../hooks/useAuth";
+import useLogout from "../hooks/useLogout";
 import {
   BUTTON_BORDER_RADIUS,
   FORM_WIDTH,
@@ -12,11 +13,12 @@ import {
 } from "../lib/constants";
 
 const Profile = () => {
-  const { auth, setAuth } = useAuth();
+  const logout = useLogout();
+  const { auth } = useAuth();
   const navigate = useNavigate();
 
-  const logout = async () => {
-    setAuth(undefined);
+  const signOut = async () => {
+    await logout();
   };
 
   return (
@@ -37,7 +39,7 @@ const Profile = () => {
         >
           View your search history
         </Button>
-        <Button onClick={logout} borderRadius={BUTTON_BORDER_RADIUS}>
+        <Button onClick={signOut} borderRadius={BUTTON_BORDER_RADIUS}>
           Sign Out
         </Button>
       </SimpleGrid>

@@ -1,18 +1,18 @@
-import { Heading, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
+import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
+import Layout from "../components/common/Layout";
+import PageTitle from "../components/common/PageTitle";
 import HistoryTable from "../components/history/HistoryTable";
-import Layout from "../components/navigation/Layout";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-import { HEADING_SIZE } from "../lib/constants";
+import useAxiosAuthorized from "../hooks/useAxiosAuthorized";
+import { HISTORY_URL } from "../lib/constants";
 import { HistoryResponse } from "../lib/types";
-
-const HISTORY_URL = "history";
 
 function History() {
   const [history, setHistory] = useState<HistoryResponse>();
   const [errorMessage, setErrorMessage] = useState<string>();
   const [isLoading, setIsLoading] = useState(true);
-  const axios = useAxiosPrivate();
+  const axiosAuthorized = useAxiosAuthorized();
 
   const renderContent = () => {
     if (isLoading) {
@@ -26,11 +26,18 @@ function History() {
 
   useEffect(() => {
     const fetchHistory = async () => {
+      const controller = new AbortController();
       try {
-        const response = await axios.get<HistoryResponse>(HISTORY_URL);
+        const response = await axiosAuthorized.get<HistoryResponse>(
+          HISTORY_URL,
+          {
+            signal: controller.signal,
+          }
+        );
         setHistory(response.data);
         setErrorMessage(undefined);
       } catch (error: any) {
+        if (error instanceof CanceledError) return;
         setErrorMessage(error?.message);
         console.error(error);
       } finally {
@@ -42,9 +49,7 @@ function History() {
 
   return (
     <Layout>
-      <Heading as="h1" fontSize={HEADING_SIZE} marginBottom={4}>
-        Search history
-      </Heading>
+      <PageTitle>Search history</PageTitle>
       {renderContent()}
     </Layout>
   );

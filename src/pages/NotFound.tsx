@@ -1,13 +1,11 @@
-import { Heading, Text } from "@chakra-ui/react";
-import Layout from "../components/navigation/Layout";
-import { HEADING_SIZE } from "../lib/constants";
+import { Text } from "@chakra-ui/react";
+import Layout from "../components/common/Layout";
+import PageTitle from "../components/common/PageTitle";
 
 function NotFound() {
   return (
     <Layout>
-      <Heading as="h1" fontSize={HEADING_SIZE} marginBottom={4}>
-        Not Found
-      </Heading>
+      <PageTitle>Not Found</PageTitle>
       <Text>Sorry, the page doesn't exist</Text>
     </Layout>
   );

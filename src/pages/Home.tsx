@@ -1,6 +1,6 @@
 import { useState } from "react";
-import FilterGrid from "../components/filters/FilterGrid";
-import Layout from "../components/navigation/Layout";
+import FilterGrid from "../components/search/FilterGrid";
+import Layout from "../components/common/Layout";
 import SearchInput from "../components/search/SearchInput";
 import VideoGrid from "../components/videos/VideoGrid";
 import { VideoQuery } from "../lib/types";

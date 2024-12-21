@@ -1,6 +1,6 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
-import { PROFILE_PAGE } from "../lib/constants";
+import useAuth from "../../hooks/useAuth";
+import { PROFILE_PAGE } from "../../lib/constants";
 
 const RequireUnauth = () => {
   const { auth } = useAuth();

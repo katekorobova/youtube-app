@@ -2,32 +2,31 @@ import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import {
   BUTTON_BORDER_RADIUS,
-  DEFAULT_LOCATION,
-  LOCATIONS,
+  DEFAULT_CATEGORY,
+  SELECTOR_HEIGHT,
+  VIDEO_CATEGORIES,
 } from "../../lib/constants";
 import useQueryDraft from "../../hooks/useQueryDraft";
 
-const LocationSelector = () => {
+const CategorySelector = () => {
   const { queryDraft, setQueryDraft } = useQueryDraft();
-  const currentLocation = LOCATIONS.find(
-    ({ value }) => value === queryDraft.locationData
+  const currentCategory = VIDEO_CATEGORIES.find(
+    ({ value }) => value === queryDraft.category
   );
 
   return (
     <Menu>
       <MenuButton
-        borderRadius={BUTTON_BORDER_RADIUS}
         as={Button}
+        borderRadius={BUTTON_BORDER_RADIUS}
         rightIcon={<BsChevronDown />}
       >
-        Location: {currentLocation?.label ?? DEFAULT_LOCATION}
+        Category: {currentCategory?.label ?? DEFAULT_CATEGORY}
       </MenuButton>
-      <MenuList maxHeight="12rem" overflowY="scroll">
-        {LOCATIONS.map(({ value, label }) => (
+      <MenuList maxHeight={SELECTOR_HEIGHT} overflowY="scroll">
+        {VIDEO_CATEGORIES.map(({ value, label }) => (
           <MenuItem
-            onClick={() =>
-              setQueryDraft({ ...queryDraft, locationData: value })
-            }
+            onClick={() => setQueryDraft({ ...queryDraft, category: value })}
             key={label}
             value={label}
           >
@@ -39,4 +38,4 @@ const LocationSelector = () => {
   );
 };
 
-export default LocationSelector;
+export default CategorySelector;

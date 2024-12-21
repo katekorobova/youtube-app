@@ -8,13 +8,13 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
-import Layout from "../components/navigation/Layout";
+import Layout from "../common/Layout";
 import {
   FORM_WIDTH,
   GRID_SPACING,
   HEADING_SIZE,
   INPUT_BORDER_RADIUS,
-} from "../lib/constants";
+} from "../../lib/constants";
 
 interface AuthFormProps {
   title: string;
