@@ -1,0 +1,14 @@
+.light-theme {
+  --background-color: var(--chakra-colors-white);
+}
+
+.dark-theme {
+  --background-color: var(--chakra-colors-gray-800);
+}
+
+.header {
+  background-color: var(--background-color);
+  position: fixed;
+  width: 100%;
+  align-content: center;
+}

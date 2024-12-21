@@ -1,34 +1,67 @@
 # youtube-app
+
 Advanced YouTube Video Search Tool
 
 ## Project Overview
-This is a web application that enhances the YouTube search experience by providing advanced filtering options and a user-friendly interface. Built using the YouTube Data API, this tool empowers users to refine their video searches with custom criteria such as date range, category, location, etc. This project is designed to help users find niche content, save time, and make video discovery more efficient.
+
+This is the frontend of a web application designed to enhance the YouTube search experience by leveraging the YouTube Data API. Users can perform advanced video searches with custom filters, including date range, category, and location. Additionally, the frontend integrates with a backend service to store search request history and allow users to repeat recent queries.
+
+The application is built using React and TypeScript for a robust, scalable, and user-friendly interface.
 
 ## Installation and Setup
-Follow these steps to clone and run the project locally:
+
+Follow these steps to clone, configure, and run the frontend locally.
+
+### Prerequisites
+
+- Node.js: (Tested with version 20)
+- NPM: For managing dependencies.
 
 ### Clone the Repository:
+
 ```
 https://github.com/katekorobova/youtube-app.git
 cd youtube-app
 ```
 
 ### Install Dependencies:
-Ensure that Node.js is installed on your system. Run:
+
+Install Dependencies:
+
 ```
 npm install
 ```
 
-### Set Up API Key:
-Obtain an API key from the Google Cloud Console. Enable YouTube Data API v3.
+### Set Up Environment Variables:
 
-Create a .env file in the root directory and add your API key:
+Create a .env file in the project root.
+
+Add the following variable:
+
 ```
-VITE_API_KEY=your_api_key_here
+VITE_BASE_URL=http://localhost:8080
 ```
+
+Replace http://localhost:8080 with the URL of your backend service.
 
 ### Run the Application:
+
 ```
 npm run dev
 ```
 
+The application will start at http://localhost:5173.
+
+### Key Technologies:
+
+- React: For building a dynamic, component-based user interface.
+- TypeScript: Ensures type safety and enhances development productivity.
+- Chakra UI: Provides accessible, customizable, and responsive UI components.
+- React Router: Manages client-side navigation and routing.
+- Axios: Handles API requests to the backend.
+
+### Links:
+
+Frontend Deployment: The frontend is deployed on [Vercel](https://youtube-app-tawny.vercel.app).
+
+Backend Repository: View the backend repository [here](https://github.com/katekorobova/youtube-app-backend).

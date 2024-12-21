@@ -1,13 +1,28 @@
 export interface VideoQuery {
-  searchText: string;
-  category: number | null;
-  order: string | null;
-  locationData: LocationData | null;
-  publishedAfter: Date | null;
-  publishedBefore: Date | null;
+  q?: string;
+  category?: string;
+  order?: string;
+  locationData?: string;
+  publishedAfter?: Date;
+  publishedBefore?: Date;
 }
 
-export interface LocationData {
-  location: string;
-  locationRadius: string;
+export interface HistoryItem {
+  id: number;
+  date: Date;
+  query: VideoQuery;
+}
+
+export interface HistoryResponse {
+  items: HistoryItem[];
+}
+
+export interface AuthData {
+  username: string;
+  accessToken: string;
+}
+
+export interface TokenResponse {
+  username: string;
+  accessToken: string;
 }

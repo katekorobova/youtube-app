@@ -1,40 +1,62 @@
-import { Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useVideos from "../../hooks/useVideos";
-import { GRID_COLUMNS, GRID_SPACING } from "../../lib/constants";
+import {
+  GRID_COLUMNS,
+  GRID_SPACING,
+  SKELETON_COUNT,
+} from "../../lib/constants";
 import { VideoQuery } from "../../lib/types";
+import PageTitle from "../common/PageTitle";
 import VideoCard from "./VideoCard";
 import VideoCardContainer from "./VideoCardContainer";
 import VideoCardSkeleton from "./VideoCardSkeleton";
 
 interface Props {
-  videoQuery: VideoQuery | null;
+  query?: VideoQuery;
 }
 
-const VideoGrid = ({ videoQuery }: Props) => {
-  const { data, error, isLoading } = useVideos(videoQuery);
-  const skeletons = [1, 2, 3, 4, 5, 6];
-  if (error) return <Text>{error}</Text>;
+const VideoGrid = ({ query }: Props) => {
+  const { data, error, isLoading, isExecuted } = useVideos(query);
+  const skeletons = [...Array(SKELETON_COUNT).keys()];
 
-  return (
-    <div>
-      <Heading as="h1" marginBottom={5}>
-        Search results
-      </Heading>
-      <SimpleGrid columns={GRID_COLUMNS} spacing={GRID_SPACING}>
-        {isLoading &&
-          skeletons.map((skeleton) => (
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <SimpleGrid columns={GRID_COLUMNS} spacing={GRID_SPACING}>
+          {skeletons.map((skeleton) => (
             <VideoCardContainer key={skeleton}>
               <VideoCardSkeleton />
             </VideoCardContainer>
           ))}
-        {!isLoading &&
-          data.map((video) => (
-            <VideoCardContainer key={video.id.videoId}>
-              <VideoCard video={video} />
-            </VideoCardContainer>
-          ))}
-      </SimpleGrid>
-    </div>
+        </SimpleGrid>
+      );
+    }
+    if (isExecuted) {
+      if (error) {
+        return <Text>{error}</Text>;
+      } else if (data.length) {
+        return (
+          <SimpleGrid columns={GRID_COLUMNS} spacing={GRID_SPACING}>
+            {data.map((video) => (
+              <VideoCardContainer key={video.id.videoId}>
+                <VideoCard video={video} />
+              </VideoCardContainer>
+            ))}
+          </SimpleGrid>
+        );
+      } else {
+        return <Text>No videos found</Text>;
+      }
+    } else {
+      return <Text>Press search</Text>;
+    }
+  };
+
+  return (
+    <>
+      <PageTitle>Search results</PageTitle>
+      {renderContent()}
+    </>
   );
 };
 

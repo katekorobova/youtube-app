@@ -5,48 +5,45 @@ import {
   InputRightAddon,
   useColorMode,
 } from "@chakra-ui/react";
-import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import { SEARCH_BORDER_RADIUS } from "../../lib/constants";
+import useQueryDraft from "../../hooks/useQueryDraft";
+import { INPUT_BORDER_RADIUS } from "../../lib/constants";
 import "./search-input.css";
 
 interface Props {
-  onSearch: (searchText: string) => void;
   onClick: () => void;
 }
 
-const SearchInput = ({ onSearch, onClick }: Props) => {
+const SearchInput = ({ onClick }: Props) => {
   const isLight = useColorMode().colorMode === "light";
-  const ref = useRef<HTMLInputElement>(null);
+  const { queryDraft, setQueryDraft } = useQueryDraft();
+
   return (
-    <form
-      className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}
-      onSubmit={(e) => e.preventDefault()}
-    >
+    <span className={`search-form ${isLight ? "light-theme" : "dark-theme"}`}>
       <InputGroup>
         <Input
           id="search-input"
-          ref={ref}
-          borderLeftRadius={SEARCH_BORDER_RADIUS}
+          borderLeftRadius={INPUT_BORDER_RADIUS}
           placeholder="Search"
           variant="outline"
           maxLength={50}
+          value={queryDraft.q ?? ""}
           onChange={(event) => {
             event.preventDefault();
-            if (ref.current) onSearch(ref.current.value);
+            setQueryDraft({ ...queryDraft, q: event.target.value });
           }}
         />
         <InputRightAddon
           as={Button}
           id="search-button"
           aria-label="Search Button"
-          borderRightRadius={SEARCH_BORDER_RADIUS}
+          borderRightRadius={INPUT_BORDER_RADIUS}
           onClick={onClick}
         >
-          <BsSearch></BsSearch>
+          <BsSearch />
         </InputRightAddon>
       </InputGroup>
-    </form>
+    </span>
   );
 };
 
