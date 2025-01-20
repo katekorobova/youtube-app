@@ -1,37 +1,48 @@
-import { Card, CardBody, Heading, Image, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  Heading,
+  Image,
+  Link,
+  Text,
+} from "@chakra-ui/react";
 import { Video } from "../../hooks/useVideos";
 import { DATE_FORMAT_OPTIONS } from "../../lib/constants";
 
-function unescape(htmlStr: string) {
-  return htmlStr
+const unescapeHtml = (htmlStr: string) =>
+  htmlStr
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/&amp;/g, "&");
-}
 
 interface Props {
   video: Video;
 }
 
 const VideoCard = ({ video }: Props) => {
-  const href = `https://www.youtube.com/watch?v=${video.id.videoId}`;
+  const videoUrl = `https://www.youtube.com/watch?v=${video.id.videoId}`;
+  const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+
   return (
-    <Link href={href} isExternal>
+    <Link href={videoUrl} isExternal>
       <Card>
-        <Image src={video.snippet.thumbnails.high.url} alt="" />
+        <Image src={thumbnails.high.url} alt="Video Thumbnail" />
         <CardBody>
           <Heading fontSize="xl" marginBottom={1}>
-            {unescape(video.snippet.title)}
+            {unescapeHtml(title)}
           </Heading>
-          <Text fontSize="sm">{video.snippet.channelTitle}</Text>
-          <Text fontSize="sm">
-            {new Date(video.snippet.publishedAt).toLocaleString(
-              "en-US",
-              DATE_FORMAT_OPTIONS
-            )}
-          </Text>
+          <Box fontSize="sm">
+            <Text>{channelTitle}</Text>
+            <Text>
+              {new Date(publishedAt).toLocaleString(
+                "en-US",
+                DATE_FORMAT_OPTIONS
+              )}
+            </Text>
+          </Box>
         </CardBody>
       </Card>
     </Link>

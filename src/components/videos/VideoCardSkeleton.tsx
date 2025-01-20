@@ -1,14 +1,15 @@
-import { Card, CardBody, Skeleton, SkeletonText } from '@chakra-ui/react'
+import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
+import { SKELETON_HEIGHT } from "../../lib/constants";
 
 const VideoCardSkeleton = () => {
   return (
     <Card>
-      <Skeleton height="200px" />
+      <Skeleton height={SKELETON_HEIGHT} />
       <CardBody>
         <SkeletonText />
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
-export default VideoCardSkeleton
+export default VideoCardSkeleton;
